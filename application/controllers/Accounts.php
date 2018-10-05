@@ -15,7 +15,7 @@ class Accounts extends CI_Controller {
 		}
 
 		$data['title'] = ucwords(str_replace('_', ' ', $page));
-
+		unset($_SESSION['error']);
 		$this->load->view('templates/header', $data);
 		$this->load->view('accounts/'.$page, $data);
 		$this->load->view('templates/footer', $data);

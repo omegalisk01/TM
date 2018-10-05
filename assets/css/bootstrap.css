@@ -6803,6 +6803,9 @@ button.close {
 .gap-2{
   padding: 100px 0; 
 }
+.gap-bottom-1{
+  padding-bottom: 50px; 
+}
 .link-footer{
   padding: 3px 0; 
 }

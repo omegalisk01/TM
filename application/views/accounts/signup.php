@@ -1,6 +1,6 @@
 		<div class="container">
 			<div class="row gap-2">
-				<div class="col-md-6 col-md-offset-3 bg-secondary">
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 bg-secondary">
 					<div class="col-md-10 col-md-offset-1">
 						<h2 class="bold text-center">SIGN UP</h3>
 						<hr class="footer-line">
@@ -21,8 +21,14 @@
 								<label for="nickname">NICKNAME</label>
 								<input type="text" class="form-control" id="nickname">
 							</div>
-							<hr class="footer-line">
-							<div class="form-group gap-1">
+							<?php
+								if (isset($_SESSION['error']))
+								{
+									echo '<div class="alert alert-danger">'.$_SESSION['error'].'</div>';
+									unset($_SESSION['error']);
+								}
+							?>
+							<div class="form-group gap-bottom-1">
 								<button type="submit" class="btn btn-red pull-right btn-lg">SIGN UP</button>
 							</div>
 						</form>

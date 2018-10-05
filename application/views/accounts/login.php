@@ -1,6 +1,6 @@
 		<div class="container">
 			<div class="row gap-2">
-				<div class="col-md-4 col-md-offset-4 bg-secondary">
+				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 bg-secondary">
 					<h2 class="bold text-center">LOGIN</h3>
 					<hr class="footer-line">
 					<form action="<?php echo base_url();?>index.php/accounts/login">
