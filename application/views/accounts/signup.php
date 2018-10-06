@@ -4,7 +4,7 @@
 					<div class="col-md-10 col-md-offset-1">
 						<h2 class="bold text-center">SIGN UP</h3>
 						<hr class="footer-line">
-						<form action="<?php echo base_url();?>index.php/accounts/login">
+						<form action="<?php echo base_url();?>index.php/accounts/signup">
 							<div class="form-group">
 								<label for="username">USERNAME</label>
 								<input type="text" class="form-control" id="username">

@@ -6851,5 +6851,23 @@ button.close {
 .section-line{
   border-style: solid;
   border-width: 0px 2px;
-  border-color: #282828;
+  border-color: #000000;
+}
+.dropdown-menu {
+  background-color: #000000;
+  border: 1px solid #000;
+}
+.dropdown-menu > li > a {
+  color: #777;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #ffffff;
+  background-color: #000000;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #fff;
+  background-color: #337ab7;
 }

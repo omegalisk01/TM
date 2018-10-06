@@ -16,6 +16,13 @@
 						<div class="checkbox">
 							<label><input type="checkbox"> Remember me</label>
 						</div>
+						<?php
+							if (isset($_SESSION['error']))
+							{
+								echo '<div class="alert alert-danger">'.$_SESSION['error'].'</div>';
+								unset($_SESSION['error']);
+							}
+						?>
 						<div class="form-group">
 							<button type="submit" class="btn btn-red btn-block">LOGIN</button>
 						</div>

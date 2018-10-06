@@ -9,13 +9,13 @@ class Accounts extends CI_Controller {
 
 	public function view($page)
 	{
-		if ( ! file_exists(APPPATH.'views/accounts/'.$page.'.php'))
+		if (!file_exists(APPPATH.'views/accounts/'.$page.'.php'))
 		{
-				show_404();
+			show_404();
 		}
 
 		$data['title'] = ucwords(str_replace('_', ' ', $page));
-		unset($_SESSION['error']);
+		
 		$this->load->view('templates/header', $data);
 		$this->load->view('accounts/'.$page, $data);
 		$this->load->view('templates/footer', $data);
@@ -31,7 +31,7 @@ class Accounts extends CI_Controller {
 
 	}
 
-	public function create()
+	public function signup()
 	{
 
 	}
