@@ -1,6 +1,6 @@
 		<div class="row">
 			<div class="col-md-12">
-				<img class="img-responsive" src="<?php echo base_url();?>assets\images\car-3.jpg">
+				<img class="img-responsive" src="<?php echo base_url('assets\images\car-3.jpg');?>">
 			</div>
 		</div>
 		<div class="container gap-2">
@@ -10,15 +10,15 @@
 				<h5 class="text-1 text-center bottom-gap">Manage your matches to develop your community and esports organization competitions</h4>
 				<div class="clearfix visible-md"></div>
 				<div class="col-md-4 col-xs-4 text-center">
-					<img class="img-responsive center-block" src="<?php echo base_url();?>assets\images\f-1.png">
+					<img class="img-responsive center-block" src="<?php echo base_url('assets\images\f-1.png');?>">
 					<br>
 				</div>
 				<div class="col-md-4 col-xs-4 text-center section-line">
-					<img class="img-responsive center-block" src="<?php echo base_url();?>assets\images\f-2.png">
+					<img class="img-responsive center-block" src="<?php echo base_url('assets\images\f-2.png');?>">
 					<br>
 				</div>
 				<div class="col-md-4 col-xs-4 text-center">
-					<img class="img-responsive center-block" src="<?php echo base_url();?>assets\images\f-3.png">
+					<img class="img-responsive center-block" src="<?php echo base_url('assets\images\f-3.png');?>">
 					<br>
 				</div>
 			</div>
@@ -43,7 +43,7 @@
 						<h4 class="text-1 text-justify">TM (Tournament Manager) is a website that is easy to use to make it easier to manage all kinds of matches in your tournament.</h4>
 					</div>
 					<div class="col-md-7 col-md-offset-1 text-center">
-						<img class="img-responsive small-border" src="<?php echo base_url();?>assets\images\car-1.jpg">
+						<img class="img-responsive small-border" src="<?php echo base_url('assets\images\car-1.jpg');?>">
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,134 @@
+.error_prefix{
+  color: #dc3029;
+}
+.btn-red {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #d43f3a;
+}
+.btn-red:focus,
+.btn-red.focus {
+  color: #fff;
+  background-color: #a72925;
+  border-color: #ac2925;
+}
+.btn-red:hover {
+  color: #fff;
+  background-color: #a72925;
+  border-color: #ac2925;
+}
+.btn-black {
+  color: #fff;
+  background-color: #1a1a1a;
+  border-color: #666666;
+}
+.btn-black:focus,
+.btn-black.focus {
+  color: #fff;
+  background-color: #666666;
+}
+.btn-black:hover {
+  color: #fff;
+  background-color: #666666;
+}
+.btn-black2{
+  color: #fff;
+  background-color: #1a1a1a;
+  border-color: #4d4d4d;
+}
+.btn-black2:focus,
+.btn-black2.focus {
+  color: #fff;
+  background-color: #000000;
+}
+.btn-black2:hover {
+  color: #fff;
+  background-color: #000000;
+}
+.bg-primary {
+  background-color: #1a1a1a;
+}
+.bg-secondary {
+  background-color: #222222;
+}
+.footer-line{
+  border-top: 1px solid #404040;
+}
+.gap-1{
+  padding: 50px 0; 
+}
+.gap-2{
+  padding: 100px 0; 
+}
+.gap-bottom-1{
+  padding-bottom: 50px; 
+}
+.link-footer{
+  padding: 3px 0; 
+}
+.black {
+  background-color: #000000;
+}
+.link-1{
+  color: #777;
+}
+.link-1:hover,
+.link-1:focus {
+  color: #ffffff;
+  background-color: transparent;
+  text-decoration: none;
+}
+.bold{
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/oswald-v16-latin-regular.eot');
+  src: local('Oswald Regular'), local('Oswald-Regular'),
+       url('../fonts/oswald-v16-latin-regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/oswald-v16-latin-regular.woff2') format('woff2'),
+       url('../fonts/oswald-v16-latin-regular.woff') format('woff'),
+       url('../fonts/oswald-v16-latin-regular.ttf') format('truetype'),
+       url('../fonts/oswald-v16-latin-regular.svg#Oswald') format('svg');
+}
+.small-border{
+  border-style: solid;
+  border-width: 2px;
+  border-color: #282828;
+  margin: 20px 0px;
+}
+.text-1{
+  color: #999999; 
+}
+.bottom-gap{
+  margin-bottom: 50px;
+}
+.section-line{
+  border-style: solid;
+  border-width: 0px 2px;
+  border-color: #000000;
+}
+.dropdown-menu {
+  background-color: #000000;
+  border: 1px solid #000;
+}
+.dropdown-menu > li > a {
+  color: #777;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #ffffff;
+  background-color: #000000;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #fff;
+  background-color: #337ab7;
+}
+.hidden
+{
+  display: none;
+}

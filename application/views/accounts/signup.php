@@ -17,7 +17,7 @@
 								<?php echo form_error('password'); ?>
 							</div>
 							<div class="form-group">
-								<label for="password">KONFIRMASI PASSWORD</label>
+								<label for="password">CONFIRM PASSWORD</label>
 								<input type="password" class="form-control" name="cpass" value="<?php echo set_value('cpass');?>">
 								<?php echo form_error('cpass'); ?>
 							</div>
