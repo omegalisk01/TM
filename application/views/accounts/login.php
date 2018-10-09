@@ -4,16 +4,16 @@
                 <?php
                 if (isset($_SESSION['message']))
                 {?>
-                    <div class="alert alert-success alert-dismissible" role="alert">
+                    <div class="alert alert-<?php echo $_SESSION['msg_type'];?> alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <?php echo $_SESSION['message'];unset($_SESSION['message']);?>
 </div>
                 <?php
                 }
                 ?>
-					<h2 class="bold text-center">LOGIN</h3>
+					<h2 class="bold text-center">LOGIN</h2>
 					<hr class="footer-line">
-					<form action="<?php echo base_url();?>index.php/accounts/login">
+					<form action="<?php echo base_url();?>/accounts/login" method="post">
                         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
 						<div class="form-group">
 							<label for="username">USERNAME</label>
@@ -29,13 +29,6 @@
 						<div class="checkbox">
 							<label><input type="checkbox" name="remember"> Remember me</label>
 						</div>
-						<?php
-							if (isset($_SESSION['error']))
-							{
-								echo '<div class="alert alert-danger">'.$_SESSION['error'].'</div>';
-								unset($_SESSION['error']);
-							}
-						?>
 						<div class="form-group">
 							<button type="submit" class="btn btn-red btn-block">LOGIN</button>
 						</div>
