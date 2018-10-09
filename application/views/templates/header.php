@@ -14,8 +14,8 @@
 					<a href="<?php echo base_url();?>"><img class="navbar-brand" src="<?php echo base_url();?>assets\images\tm-2.png"></a>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
-					<a class="btn btn-red navbar-btn bold" href="<?php echo base_url();?>index.php/signup">SIGN UP</a>
-					<a class="btn btn-black navbar-btn bold" href="<?php echo base_url();?>index.php/login">LOG IN</a>
+					<a class="btn btn-red navbar-btn bold" href="<?php echo base_url('/signup');?>">SIGN UP</a>
+					<a class="btn btn-black navbar-btn bold" href="<?php echo base_url('/login');?>">LOG IN</a>
 				</ul>
 			</div>
 		</nav>
