@@ -6,5 +6,10 @@ class AccountsModel extends CI_Model
   {
     return $this->db->insert('users',$data);
   }
+
+  public function find_user($user){
+    return $this->db->get_where('users',['username'=>$user]);
+  }
+
 }
 ?>

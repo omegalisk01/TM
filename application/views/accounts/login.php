@@ -4,7 +4,7 @@
                 <?php
                 if (isset($_SESSION['message']))
                 {?>
-                    <div class="alert alert-success alert-dismissible" role="alert">
+                    <div class="alert alert-<?php echo $_SESSION['msg_type'];?> alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <?php echo $_SESSION['message'];unset($_SESSION['message']);?>
 </div>
@@ -29,13 +29,6 @@
 						<div class="checkbox">
 							<label><input type="checkbox" name="remember"> Remember me</label>
 						</div>
-						<?php
-							if (isset($_SESSION['error']))
-							{
-								echo '<div class="alert alert-danger">'.$_SESSION['error'].'</div>';
-								unset($_SESSION['error']);
-							}
-						?>
 						<div class="form-group">
 							<button type="submit" class="btn btn-red btn-block">LOGIN</button>
 						</div>
