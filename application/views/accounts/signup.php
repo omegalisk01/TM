@@ -2,9 +2,9 @@
 			<div class="row gap-2">
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 bg-secondary">
 					<div class="col-md-10 col-md-offset-1">
-						<h2 class="bold text-center">SIGN UP</h3>
+						<h2 class="bold text-center">SIGN UP</h2>
 						<hr class="footer-line">
-						<form action="<?php echo base_url();?>index.php/accounts/signup" method="POST">
+						<form action="<?php echo base_url();?>accounts/signup" method="POST">
                             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
 							<div class="form-group">
 								<label for="username">USERNAME</label>

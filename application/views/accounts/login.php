@@ -11,9 +11,9 @@
                 <?php
                 }
                 ?>
-					<h2 class="bold text-center">LOGIN</h3>
+					<h2 class="bold text-center">LOGIN</h2>
 					<hr class="footer-line">
-					<form action="<?php echo base_url();?>index.php/accounts/login">
+					<form action="<?php echo base_url();?>/accounts/login" method="post">
                         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
 						<div class="form-group">
 							<label for="username">USERNAME</label>
