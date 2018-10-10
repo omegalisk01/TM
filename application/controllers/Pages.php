@@ -20,15 +20,13 @@ class Pages extends CI_Controller
         if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
             show_404();
         }
-
-        $data['title'] = ucwords(str_replace('_', ' ', $page));
         if (isset($this->session->logged_in)) {
-                $this->load->view('templates/header-2', $data);
+                $this->load->view('templates/header-2');
 
         } else {
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header');
         }
-        $this->load->view('pages/' . $page, $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('pages/' . $page);
+        $this->load->view('templates/footer');
     }
 }

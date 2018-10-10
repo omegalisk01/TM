@@ -22,14 +22,24 @@ class Accounts extends CI_Controller
         if (!file_exists(APPPATH . 'views/accounts/' . $page . '.php')) {
             show_404();
         }
-
-        $data['title'] = ucwords(str_replace('_', ' ', $page));
         if($page === "account"){
             if (isset($this->session->logged_in)) {
                 if ($this->session->logged_in === FALSE) {
                     redirect('index.php/login');
                 }else{
-                    $this->load->view('templates/header-2', $data);
+                    $result = $this->AccountsModel->find_user($_SESSION['username']);
+                    foreach ($result->result_array() as $data)
+                    {
+                        $data['username'];
+                        $data['password'];
+                        $data['email'];
+                        $data['nickname'];
+                        $data['first_name'];
+                        $data['last_name'];
+                        $data['phone'];
+                        $data['profil_picture_url'];
+                    }
+                    $this->load->view('templates/header-2');
                     $this->load->view('accounts/account', $data);
                 }
             }
@@ -41,16 +51,16 @@ class Accounts extends CI_Controller
                 if ($this->session->logged_in === TRUE) {
                     redirect('index.php/account');
                 }else{
-                    $this->load->view('templates/header', $data);
-                    $this->load->view('accounts/' . $page, $data);
+                    $this->load->view('templates/header');
+                    $this->load->view('accounts/' . $page);
                 }
             }
             else{
-                $this->load->view('templates/header', $data);
-                $this->load->view('accounts/' . $page, $data);
+                $this->load->view('templates/header');
+                $this->load->view('accounts/' . $page);
             }
         }
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/footer');
     }
 
     public function login()
@@ -70,8 +80,8 @@ class Accounts extends CI_Controller
                 $password = $this->input->post('password');
                 // cek password,
                 if (password_verify($password, $result->row()->password)) {
+                    $sess['username'] = $result->row()->username;
                     $sess['nickname'] = $result->row()->nickname;
-                    $result->row()->profil_picture_url;
                     $sess['logged_in'] = true;
                     $profil_picture_url = $result->row()->profil_picture_url;
                     if (is_null($profil_picture_url)) {
@@ -80,7 +90,7 @@ class Accounts extends CI_Controller
                         $sess['profil_picture_url'] = $profil_picture_url;
                     }
                     $this->session->set_userdata($sess);
-                    redirect('index.php/account');
+                    redirect('');
                 } else {
                     $sess['message'] = "Wrong username / password";
                     $sess['msg_type'] = "danger";
@@ -109,7 +119,7 @@ class Accounts extends CI_Controller
 
         $this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]|alpha_dash');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|alpha_dash');
-        $this->form_validation->set_rules('cpass', 'Konfirmasi Password', 'required|matches[password]|alpha_dash');
+        $this->form_validation->set_rules('cpass', 'Confirm Password', 'required|matches[password]|alpha_dash');
         $this->form_validation->set_rules('nickname', 'Nickname', 'required|is_unique[users.username]');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
         $this->form_validation->set_message('is_unique', 'Oops! {field} already exist!');
@@ -134,7 +144,7 @@ class Accounts extends CI_Controller
                 $this->session->set_userdata($sess);
                 redirect("index.php/login");
             } else {
-                $status = 'Pendaftaran gagal, ' . $result;
+                $status = 'Fail to Sign Up, ' . $result;
                 $this->view('signup', $status);
             }
         }
@@ -143,6 +153,40 @@ class Accounts extends CI_Controller
     public function editProfile()
     {
 
+        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]|alpha_dash');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|alpha_dash');
+        $this->form_validation->set_rules('cpass', 'Confirm Password', 'required|matches[password]|alpha_dash');
+        $this->form_validation->set_rules('nickname', 'Nickname', 'required|is_unique[users.username]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('firstname', 'Firstname', 'alpha');
+        $this->form_validation->set_rules('lastname', 'Lastname', 'alpha');
+        $this->form_validation->set_rules('phone', 'Phone', 'numeric');
+        $this->form_validation->set_message('is_unique', 'Oops! {field} already exist!');
+        $this->form_validation->set_message('matches', 'Oops! does not match with {param} field!');
+        $this->form_validation->set_message('alpha_dash', 'No spaces allowed!');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->view('account');
+        } else {
+            $data = [
+                'username' => $this->input->post('username'),
+                'password' => password_hash(($this->input->post('password')), PASSWORD_BCRYPT),
+                'email' => $this->input->post('email'),
+                'nickname' => $this->input->post('nickname'),
+            ];
+
+            $result = $this->AccountsModel->signup($data);
+            if ($result) {
+                $sess['message'] = "Edit success!!";
+                $sess['msg_type'] = "success";
+                $this->session->set_userdata($sess);
+                redirect("index.php/login");
+            } else {
+                $status = 'Fail to edit account, ' . $result;
+                $this->view('account', $status);
+            }
+        }
     }  
 
     public function editProfilePicture()
