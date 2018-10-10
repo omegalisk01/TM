@@ -9,39 +9,47 @@
 								<form action="<?php echo base_url();?>index.php/accounts/edit">
 									<div class="form-group">
 										<label for="username">USERNAME</label>
-										<input type="text" class="form-control" id="username" name="username" disabled>
+										<input type="text" class="form-control" name="username" value="<?php echo set_value('username');?>" maxlength="25">
+										<?php echo form_error('username'); ?>
 									</div>
 									<div class="form-group row">
 										<div class="col-md-6">
 											<label for="password">PASSWORD</label>
-											<input type="password" class="form-control" id="password" name="password" disabled>
+											<input type="password" class="form-control" name="password" value="<?php echo set_value('password');?>" maxlength="100">
+											<?php echo form_error('password'); ?>
 										</div>
 										<div class="col-md-6">
 											<label for="confirm_password">CONFIRM PASSWORD</label>
-											<input type="confirm_password" class="form-control" id="confirm_password" name="confirm_password" disabled>
+											<input type="confirm_password" class="form-control"  name="cpass" value="<?php echo set_value('cpass');?>" maxlength="100">
+											<?php echo form_error('cpass'); ?>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="email">EMAIL</label>
-										<input type="email" class="form-control" id="email" name="email" disabled>
+										<input type="email" class="form-control"  name="email" value="<?php echo set_value('email');?>" maxlength="100">
+										<?php echo form_error('email'); ?>
 									</div>
 									<div class="form-group">
 										<label for="nickname">NICKNAME</label>
-										<input type="text" class="form-control" id="nickname" name="nickname" disabled>
+										<input type="text" class="form-control" name="nickname" value="<?php echo set_value('nickname');?>" maxlength="25">
+										<?php echo form_error('nickname'); ?>
 									</div>
 									<div class="form-group row">
 										<div class="col-md-5">
-											<label for="first_name">FIRST NAME</label>
-											<input type="text" class="form-control" id="first_name" name="first_name" disabled>
+											<label for="firstname">FIRST NAME</label>
+											<input type="text" class="form-control" name="firstname" value="<?php echo set_value('firstname');?>" maxlength="50">
+											<?php echo form_error('firstname'); ?>
 										</div>
 										<div class="col-md-7">
-											<label for="last_name">LAST NAME</label>
-											<input type="text" class="form-control" id="last_name" name="last_name" disabled>
+											<label for="lastname">LAST NAME</label>
+											<input type="text" class="form-control" name="lastname" value="<?php echo set_value('lastname');?>" maxlength="50">
+											<?php echo form_error('lastname'); ?>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="phone">PHONE</label>
-										<input type="text" class="form-control" id="phone" name="phone" disabled>
+										<input type="text" class="form-control" name="phone" value="<?php echo set_value('phone');?>" maxlength="20">
+										<?php echo form_error('phone'); ?>
 									</div>
 									<br>
 									<div class="form-group">
@@ -53,7 +61,7 @@
 							</div>
 							<div class="col-md-4 col-md-offset-1">
 								<form action="<?php echo base_url();?>index.php/accounts/edit_pic">
-									<img class="img-circle img-responsive" src="<?php echo base_url('assets/images/no_profile.jpg');?>">
+									<img class="img-circle img-responsive" src="<?php echo base_url($_SESSION['profil_picture_url']);?>">
 									<br>
 									<div class="form-group">
 										<label for="file" id="edit_btn2" class="btn btn-black2 " onclick="edit_pic();">EDIT PICTURE</label>
