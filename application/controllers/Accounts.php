@@ -31,7 +31,6 @@ class Accounts extends CI_Controller
                     foreach ($result->result_array() as $data)
                     {
                         $data['username'];
-                        $data['password'];
                         $data['email'];
                         $data['nickname'];
                         $data['first_name'];
@@ -152,14 +151,9 @@ class Accounts extends CI_Controller
 
     public function editProfile()
     {
-
-        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]|alpha_dash');
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|alpha_dash');
-        $this->form_validation->set_rules('cpass', 'Confirm Password', 'required|matches[password]|alpha_dash');
         $this->form_validation->set_rules('nickname', 'Nickname', 'required|is_unique[users.username]');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
-        $this->form_validation->set_rules('firstname', 'Firstname', 'alpha');
-        $this->form_validation->set_rules('lastname', 'Lastname', 'alpha');
+        $this->form_validation->set_rules('firstname', 'Firstname', 'alpha_numeric_spaces');
+        $this->form_validation->set_rules('lastname', 'Lastname', 'alpha_numeric_spaces');
         $this->form_validation->set_rules('phone', 'Phone', 'numeric');
         $this->form_validation->set_message('is_unique', 'Oops! {field} already exist!');
         $this->form_validation->set_message('matches', 'Oops! does not match with {param} field!');
@@ -170,20 +164,48 @@ class Accounts extends CI_Controller
             $this->view('account');
         } else {
             $data = [
-                'username' => $this->input->post('username'),
-                'password' => password_hash(($this->input->post('password')), PASSWORD_BCRYPT),
-                'email' => $this->input->post('email'),
                 'nickname' => $this->input->post('nickname'),
+                'first_name' => $this->input->post('firstname'),
+                'last_name' => $this->input->post('lastname'),
+                'phone' => $this->input->post('phone'),
             ];
-
-            $result = $this->AccountsModel->signup($data);
+            $username = $_SESSION['username'];
+            $result = $this->AccountsModel->edit($data, $username);
             if ($result) {
-                $sess['message'] = "Edit success!!";
+                $sess['message'] = "Edit profile success!!";
                 $sess['msg_type'] = "success";
                 $this->session->set_userdata($sess);
-                redirect("index.php/login");
+                redirect("index.php/account");
             } else {
-                $status = 'Fail to edit account, ' . $result;
+                $status = 'Fail to edit profile, ' . $result;
+                $this->view('account', $status);
+            }
+        }
+    }  
+
+    public function editPassword()
+    {
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|alpha_dash');
+        $this->form_validation->set_rules('cpass', 'Confirm Password', 'required|matches[password]|alpha_dash');
+        $this->form_validation->set_message('matches', 'Oops! does not match with {param} field!');
+        $this->form_validation->set_message('alpha_dash', 'No spaces allowed!');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->view('account');
+        } else {
+            $data = [
+                'password' => password_hash(($this->input->post('password')), PASSWORD_BCRYPT),
+            ];
+            $username = $_SESSION['username'];
+            $result = $this->AccountsModel->edit($data, $username);
+            if ($result) {
+                $sess['message'] = "Edit password success!!";
+                $sess['msg_type'] = "success";
+                $this->session->set_userdata($sess);
+                redirect("index.php/account");
+            } else {
+                $status = 'Fail to edit password , ' . $result;
                 $this->view('account', $status);
             }
         }
