@@ -80,13 +80,13 @@
 							</div>
 							<div class="col-md-4 col-md-offset-1">
 								<form action="<?php echo base_url();?>index.php/accounts/edit_pic">
-									<img class="img-circle img-responsive" src="<?php echo base_url($_SESSION['profil_picture_url']);?>">
+									<img class="img-circle img-responsive" src="<?php echo base_url($_SESSION['profil_picture_url']);?>" id="pic">
 									<br>
 									<div class="form-group">
 										<label for="file" id="edit_btn2" class="btn btn-black2 " onclick="edit_pic();">EDIT PICTURE</label>
 										<input class="hidden" type="file" name="file" id="file" accept="image/jpeg">
 										<button type="submit" id="ok_btn2" class="btn btn-red hidden">CONFIRM</button>
-										<button type="button" id="cancel_btn2" class="btn btn-black2 hidden" onclick="cancel_pic();">CANCEL</button>
+										<button type="button" id="cancel_btn2" class="btn btn-black2 hidden" onclick="cancel_pic();" id="resetPic">CANCEL</button>
 									</div>
 								</form>
 							</div>
@@ -124,6 +124,7 @@
 				document.getElementById("edit_btn2").classList.remove("hidden");
 				document.getElementById("ok_btn2").classList.add("hidden");
 				document.getElementById("cancel_btn2").classList.add("hidden");
+				document.getElementById("pic").src="<?php echo base_url($_SESSION['profil_picture_url']);?>";
 			}
 			function edit_pass() {
 				document.getElementById("edit_btn3").classList.add("hidden");
@@ -143,4 +144,16 @@
 					document.getElementById(ids[i]).disabled = true;
 				}
 			}
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$('#pic').attr('src', e.target.result);
+					}
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+			$("#file").change(function() {
+				readURL(this);
+			});
 		</script>

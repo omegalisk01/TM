@@ -9,7 +9,7 @@
 	</head>
 	<body class="bg-primary">
 		<nav class="navbar-inverse black">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="navbar-header">
 					<a href="<?php echo base_url();?>"><img class="navbar-brand" src="<?php echo base_url();?>assets\images\tm-2.png"></a>
 				</div>
@@ -19,7 +19,7 @@
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo ($_SESSION['nickname']);?> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo base_url('index.php/account');?>">Account Settings</a></li>
-							<li><a href="#">My Tournaments</a></li>
+							<li><a href="<?php echo base_url('index.php/tournaments')?>">My Tournaments</a></li>
 							<li class="divider footer-line"></li>
 							<li><a href="<?php echo base_url('index.php/accounts/logout')?>">Log out</a></li>
 						</ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2018 at 01:04 PM
+-- Generation Time: Oct 14, 2018 at 06:49 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tm`
+-- Database: `test`
 --
 
 -- --------------------------------------------------------
@@ -35,7 +35,9 @@ CREATE TABLE `groups` (
   `group_origin` varchar(50) NOT NULL,
   `contact_person` varchar(20) NOT NULL,
   `description` text,
-  `group_logo_url` varchar(100) DEFAULT NULL
+  `group_logo_url` varchar(100) DEFAULT NULL,
+  `tournament_id` int(11) NOT NULL,
+  `accepted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -83,13 +85,21 @@ CREATE TABLE `tournaments` (
   `user_id` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
   `datetime` datetime NOT NULL,
-  `description` text,
+  `description` text NOT NULL,
   `logo_url` varchar(100) DEFAULT NULL,
   `website` varchar(100) DEFAULT NULL,
   `slots` enum('2','4','8','16','32','64') NOT NULL,
   `player_per_team` int(11) NOT NULL,
   `status` enum('open','full','closed','finished') NOT NULL DEFAULT 'open'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tournaments`
+--
+
+INSERT INTO `tournaments` (`tournament_id`, `user_id`, `name`, `datetime`, `description`, `logo_url`, `website`, `slots`, `player_per_team`, `status`) VALUES
+(1, 1, 'tes 1', '2018-10-14 00:00:00', 'testing 1', NULL, NULL, '2', 2, 'open'),
+(2, 1, 'tes2', '2018-10-14 00:00:00', 'testing 2', NULL, NULL, '2', 2, 'open');
 
 -- --------------------------------------------------------
 
@@ -111,6 +121,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `nickname`, `created_on`, `first_name`, `last_name`, `phone`, `profil_picture_url`) VALUES
+(1, 'admin1', '$2y$10$KZTLR1W0TW7bla9CknrDk.yEcD4YxdtzAHj7rb0LQYX4s40MP035W', 'admin1@gmail.com', 'nick1', '2018-10-10 05:18:04', 'Rio', 'Sudrajat PS', '087857423338', 'assets/images/profile_pictures/admin1.jpg');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -118,7 +135,8 @@ CREATE TABLE `users` (
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`group_id`);
+  ADD PRIMARY KEY (`group_id`),
+  ADD KEY `tournament_id` (`tournament_id`);
 
 --
 -- Indexes for table `group_members`
@@ -178,17 +196,23 @@ ALTER TABLE `matchups`
 -- AUTO_INCREMENT for table `tournaments`
 --
 ALTER TABLE `tournaments`
-  MODIFY `tournament_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tournament_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `groups`
+--
+ALTER TABLE `groups`
+  ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`tournament_id`) REFERENCES `tournaments` (`tournament_id`);
 
 --
 -- Constraints for table `group_members`

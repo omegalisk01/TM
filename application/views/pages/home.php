@@ -1,8 +1,4 @@
-		<div class="row">
-			<div class="col-md-12">
-				<img class="img-responsive" src="<?php echo base_url('assets\images\car-3.jpg');?>">
-			</div>
-		</div>
+		<img class="img-responsive" src="<?php echo base_url('assets\images\car-3.jpg');?>">
 		<div class="container gap-2">
 			<div class="row">
 				<h3 class="bold text-center">TOURNAMENT MANAGER</h3>
