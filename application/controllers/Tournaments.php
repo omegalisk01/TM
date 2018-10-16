@@ -10,6 +10,7 @@ class Tournaments extends CI_Controller
         $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->model('AccountsModel');
+        $this->load->model('TournamentsModel');
 
         if (isset($this->session->logged_in)) {
             if ($this->session->logged_in === FALSE) {
@@ -35,5 +36,11 @@ class Tournaments extends CI_Controller
             redirect('index.php/login');
         }
     }
+
+    public function show_all_tournaments()
+    {
+
+    }
+    
 
 }

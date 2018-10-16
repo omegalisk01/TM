@@ -79,13 +79,14 @@
 								</form>
 							</div>
 							<div class="col-md-4 col-md-offset-1">
-								<form action="<?php echo base_url();?>index.php/accounts/edit_pic">
+								<form action="<?php echo base_url();?>index.php/accounts/edit_pic" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
 									<img class="img-circle img-responsive" src="<?php echo base_url($_SESSION['profil_picture_url']);?>" id="pic">
 									<br>
 									<div class="form-group">
 										<label for="file" id="edit_btn2" class="btn btn-black2 " onclick="edit_pic();">EDIT PICTURE</label>
-										<input class="hidden" type="file" name="file" id="file" accept="image/jpeg">
-										<button type="submit" id="ok_btn2" class="btn btn-red hidden">CONFIRM</button>
+										<input class="hidden" type="file" name="file" id="file">
+										<button type="submit" name="upload" id="ok_btn2" class="btn btn-red hidden" value="true">CONFIRM</button>
 										<button type="button" id="cancel_btn2" class="btn btn-black2 hidden" onclick="cancel_pic();" id="resetPic">CANCEL</button>
 									</div>
 								</form>
