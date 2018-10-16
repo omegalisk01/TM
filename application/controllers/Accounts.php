@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Accounts extends CI_Controller
 {
 
@@ -129,12 +129,12 @@ class Accounts extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->view('signup');
         } else {
-            $data = [
+            $data = array(
                 'username' => $this->input->post('username'),
                 'password' => password_hash(($this->input->post('password')), PASSWORD_BCRYPT),
                 'email' => $this->input->post('email'),
                 'nickname' => $this->input->post('nickname'),
-            ];
+            );
 
             $result = $this->AccountsModel->signup($data);
             if ($result) {
@@ -163,12 +163,12 @@ class Accounts extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->view('account');
         } else {
-            $data = [
+            $data = array(
                 'nickname' => $this->input->post('nickname'),
                 'first_name' => $this->input->post('firstname'),
                 'last_name' => $this->input->post('lastname'),
                 'phone' => $this->input->post('phone'),
-            ];
+            );
             $username = $_SESSION['username'];
             $result = $this->AccountsModel->edit($data, $username);
             if ($result) {
@@ -194,9 +194,9 @@ class Accounts extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->view('account');
         } else {
-            $data = [
+            $data = array(
                 'password' => password_hash(($this->input->post('password')), PASSWORD_BCRYPT),
-            ];
+            );
             $username = $_SESSION['username'];
             $result = $this->AccountsModel->edit($data, $username);
             if ($result) {
@@ -211,8 +211,43 @@ class Accounts extends CI_Controller
         }
     }  
 
-    public function editProfilePicture()
+    public function edit_pic()
     {
-        
+        $config['upload_path'] = './uploads/images/profile_pictures/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']     = '2000'; // dalam kb
+        $config['max_width'] = '1024';
+        $config['max_height'] = '1024';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('file'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            $sess['message'] = $error;
+            $sess['msg_type'] = "danger";
+            $this->session->set_userdata($sess);
+            redirect("index.php/account");
+        }
+        else
+        {
+            $username = $_SESSION['username'];
+            $data = array(
+                "profil_picture_url" => $config['upload_path'] . $this->upload->data()['file_name']
+            );
+            $result = $this->AccountsModel->edit($data,$username);
+            if ($result){
+                $sess['profil_picture_url'] = $data['profil_picture_url'];
+                $sess['message'] = "Edit PP sukses!!";
+                $sess['msg_type'] = "success";
+                $this->session->set_userdata($sess);
+                redirect("index.php/account");
+            }else{
+                $sess['message'] = "Kesalahan Database!!";
+                $sess['msg_type'] = "danger";
+                $this->session->set_userdata($sess);
+                redirect("index.php/account");
+            }
+        }
     }
 }
