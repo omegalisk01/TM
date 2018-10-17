@@ -59,6 +59,7 @@
 								</form>
 								<br>
 								<form action="<?php echo base_url('index.php/accounts/editPassword');?>" method="POST">
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
 									<div class="form-group row">
 										<div class="col-md-6">
 											<label for="password">PASSWORD</label>
