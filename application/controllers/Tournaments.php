@@ -28,8 +28,14 @@ class Tournaments extends CI_Controller
             if ($this->session->logged_in === FALSE) {
                 redirect('index.php/login');
             }else{
-                $this->load->view('templates/header-2');
-                $this->load->view('tournaments/' . $page);
+                if ($page == 'mytournaments') {
+                    $data['table'] = $this->TournamentsModel->show_tournament($_SESSION['username']);
+                    $this->load->view('templates/header-2');
+                    $this->load->view('tournaments/' . $page, $data);
+                } else {
+                    $this->load->view('templates/header-2');
+                    $this->load->view('tournaments/' . $page);
+                }
             }
         }
         else{

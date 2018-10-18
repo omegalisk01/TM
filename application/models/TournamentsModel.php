@@ -13,9 +13,12 @@ class TournamentsModel extends CI_Model
         return $this->db->get('tournaments');
     }
 
-    public function show_tournament($data)
+    public function show_tournament($username)
     {
-        return $this->db->get_where('tournaments',$data);
+        $this->db->from('tournaments'); 
+        $this->db->join('users', 'tournaments.user_id = users.user_id');
+        $this->db->where('username', $username);
+        return $this->db->get()->result();
     }
 
     public function edit_tournament($data)

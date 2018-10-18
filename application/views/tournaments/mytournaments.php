@@ -16,7 +16,7 @@
 			            <?php
 			            	}
 			            ?>
-					<table class="table table-striped">
+					<table class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -28,7 +28,20 @@
 							</tr>
 						</thead>
 						<tbody>
-								
+							<?php 
+								foreach ($table as $items) {
+							?>
+							<tr>
+								<td><?php echo $items->tournament_id; ?></td>
+								<td><?php echo $items->name; ?></td>
+								<td><?php echo $items->datetime; ?></td>
+								<td>#/<?php echo $items->slots; ?></td>
+								<td><?php echo $items->status; ?></td>
+								<td>on progress</td>
+							</tr>
+							<?php 
+								} 
+							 ?>
 						</tbody>
 					</table>
 				</div>
