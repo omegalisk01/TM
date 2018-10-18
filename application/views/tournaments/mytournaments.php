@@ -2,7 +2,7 @@
 			<div class="row gap-2">
 				<div class="col-md-12 col-sm-12 col-xs-12 bg-secondary">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="<?php echo base_url('index.php/tournaments');?>">My Tournaments</a></li>
+						<li class="active"><a href="<?php echo base_url('index.php/tournaments/mytournaments');?>">My Tournaments</a></li>
 						<li><a href="<?php echo base_url('index.php/tournaments/create');?>">Create a Tournament</a></li>
 					</ul>
 						<?php
@@ -20,6 +20,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
+								<th>LOGO</th>
 								<th>NAME</th>
 								<th>DATE AND TIME</th>
 								<th>SLOTS</th>
@@ -33,6 +34,7 @@
 							?>
 							<tr>
 								<td><?php echo $items->tournament_id; ?></td>
+								<td>LOGO</td>
 								<td><?php echo $items->name; ?></td>
 								<td><?php echo $items->datetime; ?></td>
 								<td>#/<?php echo $items->slots; ?></td>

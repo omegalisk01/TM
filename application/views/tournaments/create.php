@@ -2,7 +2,7 @@
 			<div class="row gap-2">
 				<div class="col-md-12 col-sm-12 col-xs-12 bg-secondary">
 					<ul class="nav nav-tabs">
-						<li><a href="<?php echo base_url('index.php/tournaments');?>">My Tournaments</a></li>
+						<li><a href="<?php echo base_url('index.php/tournaments/mytournaments');?>">My Tournaments</a></li>
 						<li class="active"><a href="<?php echo base_url('index.php/tournaments/create');?>">Create a Tournament</a></li>
 					</ul>
 					<div class="col-md-10 col-md-offset-1">
