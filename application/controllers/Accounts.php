@@ -189,8 +189,6 @@ class Accounts extends CI_Controller
         $this->form_validation->set_rules('cpass', 'Confirm Password', 'required|matches[password]|alpha_dash');
         $this->form_validation->set_message('matches', 'Oops! does not match with {param} field!');
         $this->form_validation->set_message('alpha_dash', 'No spaces allowed!');
-
-
         if ($this->form_validation->run() == FALSE) {
             $this->view('account');
         } else {
@@ -215,6 +213,7 @@ class Accounts extends CI_Controller
     {
         $config['upload_path'] = './uploads/images/profile_pictures/';
         $config['allowed_types'] = 'gif|jpg|png';
+        $config['file_name'] = $_SESSION['username'];
         $config['max_size']     = '2000'; // dalam kb
         $config['max_width'] = '1024';
         $config['max_height'] = '1024';
@@ -238,12 +237,12 @@ class Accounts extends CI_Controller
             $result = $this->AccountsModel->edit($data,$username);
             if ($result){
                 $sess['profil_picture_url'] = $data['profil_picture_url'];
-                $sess['message'] = "Edit PP sukses!!";
+                $sess['message'] = "Edit profile Picture success!";
                 $sess['msg_type'] = "success";
                 $this->session->set_userdata($sess);
                 redirect("index.php/account");
             }else{
-                $sess['message'] = "Kesalahan Database!!";
+                $sess['message'] = "Database error!";
                 $sess['msg_type'] = "danger";
                 $this->session->set_userdata($sess);
                 redirect("index.php/account");
